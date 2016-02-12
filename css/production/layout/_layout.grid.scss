@@ -1,0 +1,113 @@
+//---------------------------------------------------------
+// Basic grid
+//---------------------------------------------------------
+
+.grid {
+    @include clearfix;
+    min-width: 100%;
+	
+    > [class*="grid__"] {
+        float: left;
+    }
+}
+
+.grid--clean {
+	margin-bottom: -2px;
+	overflow: hidden;
+}
+
+//---------------------------------------------------------
+// Gutters
+//---------------------------------------------------------
+
+$gutters: (
+    1: 1,
+    5: 5,
+    10: 10,
+    20: 20,
+    40: 40
+);
+
+@each $classname, $size in $gutters {
+    .grid--gutter-#{$classname} {
+        margin-left: -#{$size}px;
+       
+        > [class*="grid__"] {
+            padding-left: #{$size}px;
+            margin-bottom: #{$size}px;
+        }
+    }
+}
+
+@each $classname, $size in $gutters {
+    .grid--gutter-h-#{$classname} {
+        margin-left: -#{$size}px;
+       
+        > [class*="grid__"] {
+            padding-left: #{$size}px;
+        }
+    }
+}
+
+//---------------------------------------------------------
+// Grid widths
+//---------------------------------------------------------
+
+$grid-widths: (
+    5:  5%,
+    10: 10%,
+    20: 20%,
+    25: 25%,
+    33: 33.3333%,
+    40: 40%,
+    50: 50%,
+    60: 60%,
+    66: 66.6666%,
+    75: 75%,
+    80: 80%,
+    100: 100%,
+);
+
+@each $classname, $size in $grid-widths {
+    .grid__#{$classname} {
+        width: #{$size};
+    }
+}
+
+
+//---------------------------------------------------------
+// Grid generic mediaqueries
+//---------------------------------------------------------
+
+@media(max-width: 900px) {
+	
+	.grid__33, .grid__40, .grid__60 {
+		width: 50%;
+	}
+
+}
+
+@media(max-width: 800px) {
+	
+	.grid__25 {
+		width: 50%;
+	}
+	
+	.grid__50 {
+		width: 100%;
+	}
+}
+
+@media(max-width: 750px) {
+    .grid__40, .grid__60 {
+        width: 100%;
+    }
+}
+
+@media(max-width: 550px) {
+    
+    .grid__25, .grid__33, .grid__40, .grid__50, .grid__60 {
+        width: 100%;
+        float: none;
+    }
+}
